@@ -3,19 +3,21 @@ using System.Collections.Generic;
 
 namespace ConsoleCalculator
 {
-    class Tokenizer
+    internal class Tokenizer
     {
-        internal List<string> Tokenize(string input)
+        internal static List<string> Tokenize(string input)
         {
             var result = new List<string>();
             var operationStack = new Stack<char>();
             char prevToken = default;
-
+            var isNegative = false;
+            
             for (var i = 0; i < input.Length; i++)
             {
                 if (char.IsDigit(input[i]))
                 {
                     var currentNumber = "";
+
                     while (!input[i].IsOperator())
                     {
                         currentNumber += input[i];
@@ -24,7 +26,13 @@ namespace ConsoleCalculator
                         if (i == input.Length) break;
                     }
 
-                    result.Add(currentNumber); 
+                    if (isNegative)
+                    {
+                        currentNumber = $"-{currentNumber}";
+                        isNegative = false;
+                    }
+                    
+                    result.Add(currentNumber);
                     i--;
                     prevToken = input[i];
                 }
@@ -33,20 +41,29 @@ namespace ConsoleCalculator
 
                 if (prevToken != '(' && prevToken != ')' && !char.IsDigit(prevToken) && !(input[i] == '(' || input[i] == ')'))
                 {
-                    switch (input[i])
+                    if ((prevToken == '*' || prevToken == '/') && input[i] == '-')
                     {
-                        case '-':
-                            result.Add("0");
-                            break;
-                        case '+':
-                            continue;
+                        isNegative = true;
+                        continue;
+                    }
+                    else
+                    {
+                        switch (input[i])
+                        {
+                            case '-':
+                                isNegative = true;
+                                continue;
+                            case '+':
+                                continue;
+                        }
                     }
                 }
-
+                
                 switch (input[i])
                 {
                     case '(':
                         operationStack.Push(input[i]);
+
                         break;
                     case ')':
                     {
@@ -54,7 +71,7 @@ namespace ConsoleCalculator
 
                         if (symbol == '(')
                             throw new SystemException();
-
+                        
                         while (symbol != '(')
                         {
                             result.Add(symbol.ToString());
@@ -73,13 +90,12 @@ namespace ConsoleCalculator
                         }
                         
                         operationStack.Push(input[i]);
-
+                        
                         break;
                     }
                 }
-
+                
                 prevToken = input[i];
-
             }
 
             while (operationStack.Count > 0)
