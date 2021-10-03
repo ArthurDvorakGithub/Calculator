@@ -10,7 +10,7 @@ namespace ConsoleCalculator
         {
             try
             {
-                var tokens = Tokenizer.Tokenize(input).ToArray();//2 3 + 6 *
+                var tokens = Tokenizer.Tokenize(input).ToArray();
                 double result = 0;
                 var temp = new Stack<double>();
 
@@ -20,10 +20,10 @@ namespace ConsoleCalculator
                     {
                         temp.Push(tempNumber);
                     }
-                    else if (t.FirstOrDefault().IsOperator()) // “(2+3)*6”
+                    else if (t.FirstOrDefault().IsOperator()) 
                     {
-                        var a = temp.Pop();//-2   3 из временнного стека  temp , 6
-                        var b = temp.Pop();//-567 2
+                        var a = temp.Pop();
+                        var b = temp.Pop();
 
                         result = t.FirstOrDefault() switch
                         {

@@ -3,16 +3,16 @@ using System.Collections.Generic;
 
 namespace ConsoleCalculator
 {
-    internal class Tokenizer// нам нужен что бы разбить строку на токены-элементы выражения
+    internal class Tokenizer
     {
         internal static List<string> Tokenize(string input)
         {
-            var result = new List<string>(); //разделенные готовые токены (оперции, числа) в коллекции
+            var result = new List<string>(); 
             var operationStack = new Stack<char>();
-            char prevSymbol = default; // ппеременная для определения , отрицательное ли след число
-            var isNegative = false; // если число отрицательное
+            char prevSymbol = default; 
+            var isNegative = false; 
             
-            for (var i = 0; i < input.Length; i++) //идем по всем символам, что бы спарсить токены
+            for (var i = 0; i < input.Length; i++) 
             {
                 if (char.IsDigit(input[i]))
                 {
@@ -28,7 +28,7 @@ namespace ConsoleCalculator
 
                     if (isNegative)
                     {
-                        currentNumber = $"-{currentNumber}"; //“(2+3)*6”
+                        currentNumber = $"-{currentNumber}"; 
                         isNegative = false;
                     }
                     
@@ -41,7 +41,7 @@ namespace ConsoleCalculator
 
                 if (!char.IsDigit(prevSymbol) && !(input[i] == '(' || input[i] == ')'))
                 {
-                    if ((prevSymbol == '*' || prevSymbol == '/') && input[i] == '-')// нужно для нуля
+                    if ((prevSymbol == '*' || prevSymbol == '/') && input[i] == '-')
                     {
                         isNegative = true;
                         continue;
@@ -67,7 +67,7 @@ namespace ConsoleCalculator
                         break;
                     case ')':
                     {
-                        if (prevSymbol == '(') // Нужно для обработки пустых скобочек //“(2+3)*6”
+                        if (prevSymbol == '(') 
                                 throw new SystemException();
 
                         var symbol = operationStack.Pop();
@@ -83,7 +83,7 @@ namespace ConsoleCalculator
                     {
                         if (operationStack.Count > 0)
                         {
-                            if (input[i].GetOperationPriority() <= operationStack.Peek().GetOperationPriority())// забираем текущую операцию
+                            if (input[i].GetOperationPriority() <= operationStack.Peek().GetOperationPriority())
                             {
                                 result.Add(operationStack.Pop().ToString());
                             }
