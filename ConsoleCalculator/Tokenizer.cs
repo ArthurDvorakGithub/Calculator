@@ -3,16 +3,16 @@ using System.Collections.Generic;
 
 namespace ConsoleCalculator
 {
-    internal class Tokenizer
+    internal class Tokenizer// нам нужен что бы разбить строку на токены-элементы выражения
     {
         internal static List<string> Tokenize(string input)
         {
-            var result = new List<string>();
+            var result = new List<string>(); //разделенные готовые токены (оперции, числа) в коллекции
             var operationStack = new Stack<char>();
-            char prevToken = default;
-            var isNegative = false;
+            char prevSymbol = default; // ппеременная для определения , отрицательное ли след число
+            var isNegative = false; // если число отрицательное
             
-            for (var i = 0; i < input.Length; i++)
+            for (var i = 0; i < input.Length; i++) //идем по всем символам, что бы спарсить токены
             {
                 if (char.IsDigit(input[i]))
                 {
@@ -28,20 +28,20 @@ namespace ConsoleCalculator
 
                     if (isNegative)
                     {
-                        currentNumber = $"-{currentNumber}";
+                        currentNumber = $"-{currentNumber}"; //“(2+3)*6”
                         isNegative = false;
                     }
                     
                     result.Add(currentNumber);
                     i--;
-                    prevToken = input[i];
+                    prevSymbol = input[i];
                 }
 
                 if (!input[i].IsOperator()) continue;
 
-                if (prevToken != '(' && prevToken != ')' && !char.IsDigit(prevToken) && !(input[i] == '(' || input[i] == ')'))
+                if (!char.IsDigit(prevSymbol) && !(input[i] == '(' || input[i] == ')'))
                 {
-                    if ((prevToken == '*' || prevToken == '/') && input[i] == '-')
+                    if ((prevSymbol == '*' || prevSymbol == '/') && input[i] == '-')// нужно для нуля
                     {
                         isNegative = true;
                         continue;
@@ -67,10 +67,10 @@ namespace ConsoleCalculator
                         break;
                     case ')':
                     {
-                        var symbol = operationStack.Pop();
+                        if (prevSymbol == '(') // Нужно для обработки пустых скобочек //“(2+3)*6”
+                                throw new SystemException();
 
-                        if (symbol == '(')
-                            throw new SystemException();
+                        var symbol = operationStack.Pop();
                         
                         while (symbol != '(')
                         {
@@ -83,7 +83,7 @@ namespace ConsoleCalculator
                     {
                         if (operationStack.Count > 0)
                         {
-                            if (input[i].GetOperationPriority() <= operationStack.Peek().GetOperationPriority())
+                            if (input[i].GetOperationPriority() <= operationStack.Peek().GetOperationPriority())// забираем текущую операцию
                             {
                                 result.Add(operationStack.Pop().ToString());
                             }
@@ -95,7 +95,7 @@ namespace ConsoleCalculator
                     }
                 }
                 
-                prevToken = input[i];
+                prevSymbol = input[i];
             }
 
             while (operationStack.Count > 0)

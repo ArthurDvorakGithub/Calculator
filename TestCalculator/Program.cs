@@ -11,7 +11,7 @@ namespace TestCalculator
             {
                 Console.Write("Введите выражение: ");
                 Console.WriteLine(ExpressionEngine.Calculate(Console.ReadLine()));
-            }       
+            }
         }
     }
 }
