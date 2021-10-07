@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using ConsoleCalculator.Exceptions;
 
 namespace ConsoleCalculator
 {
@@ -7,18 +8,21 @@ namespace ConsoleCalculator
     {
         internal static List<string> Tokenize(string input)
         {
-            var result = new List<string>(); 
+            var result = new List<string>();
             var operationStack = new Stack<char>();
-            char prevSymbol = default; 
-            var isNegative = false; 
+            char prevToken = default;
+            var isNegative = false;
             
-            for (var i = 0; i < input.Length; i++) 
+            for (var i = 0; i < input.Length; i++)
             {
+                if (input[i].IsInvalidSymbol())
+                    throw new UnrecognizedSymbolException($"Symbol \"{input[i]}\" is not correct. Expected math operations. Please, try to enter math expression again");
+                
                 if (char.IsDigit(input[i]))
                 {
                     var currentNumber = "";
 
-                    while (!input[i].IsOperator())
+                    while (!input[i].IsOperator() && !input[i].IsInvalidSymbol())
                     {
                         currentNumber += input[i];
                         i++;
@@ -28,34 +32,39 @@ namespace ConsoleCalculator
 
                     if (isNegative)
                     {
-                        currentNumber = $"-{currentNumber}"; 
+                        currentNumber = $"-{currentNumber}";
                         isNegative = false;
                     }
                     
                     result.Add(currentNumber);
                     i--;
-                    prevSymbol = input[i];
+                    prevToken = input[i];
                 }
 
                 if (!input[i].IsOperator()) continue;
 
-                if (!char.IsDigit(prevSymbol) && !(input[i] == '(' || input[i] == ')'))
+                if (!char.IsDigit(prevToken) && !(input[i] == '(' || input[i] == ')') && !isNegative)
                 {
-                    if ((prevSymbol == '*' || prevSymbol == '/') && input[i] == '-')
+                    if (prevToken == ')' && input[i] == '-')
+                    {
+                        operationStack.Push(input[i]);
+                        prevToken = input[i];
+                        continue;
+                    }
+
+                    if ((prevToken == '*' || prevToken == '/') && input[i] == '-')
                     {
                         isNegative = true;
                         continue;
                     }
-                    else
+
+                    switch (input[i])
                     {
-                        switch (input[i])
-                        {
-                            case '-':
-                                isNegative = true;
-                                continue;
-                            case '+':
-                                continue;
-                        }
+                        case '-':
+                            isNegative = true;
+                            continue;
+                        case '+':
+                            continue;
                     }
                 }
                 
@@ -67,11 +76,11 @@ namespace ConsoleCalculator
                         break;
                     case ')':
                     {
-                        if (prevSymbol == '(') 
-                                throw new SystemException();
-
                         var symbol = operationStack.Pop();
-                        
+
+                        if (prevToken == '(')
+                            throw new SystemException();
+
                         while (symbol != '(')
                         {
                             result.Add(symbol.ToString());
@@ -95,7 +104,7 @@ namespace ConsoleCalculator
                     }
                 }
                 
-                prevSymbol = input[i];
+                prevToken = input[i];
             }
 
             while (operationStack.Count > 0)

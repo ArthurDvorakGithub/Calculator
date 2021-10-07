@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <OutputType>Exe</OutputType>
@@ -6,12 +6,11 @@
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     </PropertyGroup>
 
-	<ItemGroup>
-		<Reference Include="C:\Users\Arthur\source\repos\CalculatorAsp for IBA\ConsoleCalculator\bin\Release\netcoreapp3.1\ConsoleCalculator.dll"/>
-	</ItemGroup>
-
     <ItemGroup>
       <ProjectReference Include="..\ConsoleCalculator\ConsoleCalculator.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <Reference Include="C:\Users\rave9\OneDrive\Рабочий стол\Projects\Console\ConsoleCalculator\bin\Debug\netcoreapp3.1\ConsoleCalculator.dll"/>
     </ItemGroup>
 
 </Project>

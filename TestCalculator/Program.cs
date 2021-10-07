@@ -9,8 +9,15 @@ namespace TestCalculator
         {
             while (true)
             {
-                Console.Write("Введите выражение: ");
-                Console.WriteLine(ExpressionEngine.Calculate(Console.ReadLine()));
+                try
+                {
+                    Console.Write("Введите выражение: ");
+                    Console.WriteLine(ExpressionEngine.Calculate(Console.ReadLine()));
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
             }
         }
     }
