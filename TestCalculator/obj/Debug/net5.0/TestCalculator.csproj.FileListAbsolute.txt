@@ -36,3 +36,22 @@ C:\Users\Arthur\Downloads\MathExpressionEngine-main\MathExpressionEngine-main\Te
 C:\Users\Arthur\Downloads\MathExpressionEngine-main\MathExpressionEngine-main\TestCalculator\obj\Debug\net5.0\ref\TestCalculator.dll
 C:\Users\Arthur\Downloads\MathExpressionEngine-main\MathExpressionEngine-main\TestCalculator\obj\Debug\net5.0\TestCalculator.pdb
 C:\Users\Arthur\Downloads\MathExpressionEngine-main\MathExpressionEngine-main\TestCalculator\obj\Debug\net5.0\TestCalculator.genruntimeconfig.cache
+C:\Users\Arthur\source\repos\CalculatorAsp for IBA\TestCalculator\bin\Debug\net5.0\TestCalculator.exe
+C:\Users\Arthur\source\repos\CalculatorAsp for IBA\TestCalculator\bin\Debug\net5.0\TestCalculator.deps.json
+C:\Users\Arthur\source\repos\CalculatorAsp for IBA\TestCalculator\bin\Debug\net5.0\TestCalculator.runtimeconfig.json
+C:\Users\Arthur\source\repos\CalculatorAsp for IBA\TestCalculator\bin\Debug\net5.0\TestCalculator.runtimeconfig.dev.json
+C:\Users\Arthur\source\repos\CalculatorAsp for IBA\TestCalculator\bin\Debug\net5.0\TestCalculator.dll
+C:\Users\Arthur\source\repos\CalculatorAsp for IBA\TestCalculator\bin\Debug\net5.0\ref\TestCalculator.dll
+C:\Users\Arthur\source\repos\CalculatorAsp for IBA\TestCalculator\bin\Debug\net5.0\TestCalculator.pdb
+C:\Users\Arthur\source\repos\CalculatorAsp for IBA\TestCalculator\bin\Debug\net5.0\ConsoleCalculator.dll
+C:\Users\Arthur\source\repos\CalculatorAsp for IBA\TestCalculator\bin\Debug\net5.0\ConsoleCalculator.pdb
+C:\Users\Arthur\source\repos\CalculatorAsp for IBA\TestCalculator\obj\Debug\net5.0\TestCalculator.csproj.AssemblyReference.cache
+C:\Users\Arthur\source\repos\CalculatorAsp for IBA\TestCalculator\obj\Debug\net5.0\TestCalculator.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Arthur\source\repos\CalculatorAsp for IBA\TestCalculator\obj\Debug\net5.0\TestCalculator.AssemblyInfoInputs.cache
+C:\Users\Arthur\source\repos\CalculatorAsp for IBA\TestCalculator\obj\Debug\net5.0\TestCalculator.AssemblyInfo.cs
+C:\Users\Arthur\source\repos\CalculatorAsp for IBA\TestCalculator\obj\Debug\net5.0\TestCalculator.csproj.CoreCompileInputs.cache
+C:\Users\Arthur\source\repos\CalculatorAsp for IBA\TestCalculator\obj\Debug\net5.0\TestCalculator.csproj.CopyComplete
+C:\Users\Arthur\source\repos\CalculatorAsp for IBA\TestCalculator\obj\Debug\net5.0\TestCalculator.dll
+C:\Users\Arthur\source\repos\CalculatorAsp for IBA\TestCalculator\obj\Debug\net5.0\ref\TestCalculator.dll
+C:\Users\Arthur\source\repos\CalculatorAsp for IBA\TestCalculator\obj\Debug\net5.0\TestCalculator.pdb
+C:\Users\Arthur\source\repos\CalculatorAsp for IBA\TestCalculator\obj\Debug\net5.0\TestCalculator.genruntimeconfig.cache

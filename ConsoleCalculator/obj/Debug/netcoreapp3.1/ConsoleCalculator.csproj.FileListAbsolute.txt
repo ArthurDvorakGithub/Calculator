@@ -29,3 +29,12 @@ C:\Users\Arthur\Downloads\MathExpressionEngine-main\MathExpressionEngine-main\Co
 C:\Users\Arthur\Downloads\MathExpressionEngine-main\MathExpressionEngine-main\ConsoleCalculator\obj\Debug\netcoreapp3.1\ConsoleCalculator.csproj.CoreCompileInputs.cache
 C:\Users\Arthur\Downloads\MathExpressionEngine-main\MathExpressionEngine-main\ConsoleCalculator\obj\Debug\netcoreapp3.1\ConsoleCalculator.dll
 C:\Users\Arthur\Downloads\MathExpressionEngine-main\MathExpressionEngine-main\ConsoleCalculator\obj\Debug\netcoreapp3.1\ConsoleCalculator.pdb
+C:\Users\Arthur\source\repos\CalculatorAsp for IBA\ConsoleCalculator\bin\Debug\netcoreapp3.1\ConsoleCalculator.deps.json
+C:\Users\Arthur\source\repos\CalculatorAsp for IBA\ConsoleCalculator\bin\Debug\netcoreapp3.1\ConsoleCalculator.dll
+C:\Users\Arthur\source\repos\CalculatorAsp for IBA\ConsoleCalculator\bin\Debug\netcoreapp3.1\ConsoleCalculator.pdb
+C:\Users\Arthur\source\repos\CalculatorAsp for IBA\ConsoleCalculator\obj\Debug\netcoreapp3.1\ConsoleCalculator.csproj.AssemblyReference.cache
+C:\Users\Arthur\source\repos\CalculatorAsp for IBA\ConsoleCalculator\obj\Debug\netcoreapp3.1\ConsoleCalculator.AssemblyInfoInputs.cache
+C:\Users\Arthur\source\repos\CalculatorAsp for IBA\ConsoleCalculator\obj\Debug\netcoreapp3.1\ConsoleCalculator.AssemblyInfo.cs
+C:\Users\Arthur\source\repos\CalculatorAsp for IBA\ConsoleCalculator\obj\Debug\netcoreapp3.1\ConsoleCalculator.csproj.CoreCompileInputs.cache
+C:\Users\Arthur\source\repos\CalculatorAsp for IBA\ConsoleCalculator\obj\Debug\netcoreapp3.1\ConsoleCalculator.dll
+C:\Users\Arthur\source\repos\CalculatorAsp for IBA\ConsoleCalculator\obj\Debug\netcoreapp3.1\ConsoleCalculator.pdb

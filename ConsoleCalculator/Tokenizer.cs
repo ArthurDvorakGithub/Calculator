@@ -28,7 +28,7 @@ namespace ConsoleCalculator
                         i++;
 
                         if (i == input.Length) break;
-                    }
+                    }   
 
                     if (isNegative)
                     {
@@ -45,12 +45,14 @@ namespace ConsoleCalculator
 
                 if (!char.IsDigit(prevToken) && !(input[i] == '(' || input[i] == ')') && !isNegative)
                 {
-                    if (prevToken == ')' && input[i] == '-')
+
+                    if (prevToken == '-' && input[i] == '(')
                     {
                         operationStack.Push(input[i]);
                         prevToken = input[i];
                         continue;
                     }
+
 
                     if ((prevToken == '*' || prevToken == '/') && input[i] == '-')
                     {
@@ -58,11 +60,23 @@ namespace ConsoleCalculator
                         continue;
                     }
 
+                    //if (prevToken == '(' && input[i] == '-')
+                    //{
+                    //    isNegative = true;
+                    //    continue;
+                    //}
+
+
                     switch (input[i])
                     {
                         case '-':
-                            isNegative = true;
+                            if (input[i] != '(' && prevToken !='(')
+                            {
+                                isNegative = true;
+                            }
+                            
                             continue;
+
                         case '+':
                             continue;
                     }
@@ -81,7 +95,7 @@ namespace ConsoleCalculator
                         if (prevToken == '(')
                             throw new SystemException();
 
-                        while (symbol != '(')
+                        while (symbol != '(' )
                         {
                             result.Add(symbol.ToString());
                             symbol = operationStack.Pop();
