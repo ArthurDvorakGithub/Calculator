@@ -10,14 +10,14 @@ namespace ConsoleCalculator
         {
             var result = new List<string>();
             var operationStack = new Stack<char>();
-            char prevToken = default;
-            var isNegative = false;
-            
+            var prevToken = '\0';
+
             for (var i = 0; i < input.Length; i++)
             {
                 if (input[i].IsInvalidSymbol())
-                    throw new UnrecognizedSymbolException($"Symbol \"{input[i]}\" is not correct. Expected math operations. Please, try to enter math expression again");
-                
+                    throw new UnrecognizedSymbolException($"Symbol \"{input[i]}\" is not correct. " +
+                                                          "Expected math operations. Please, try to enter math expression again");
+
                 if (char.IsDigit(input[i]))
                 {
                     var currentNumber = "";
@@ -28,103 +28,74 @@ namespace ConsoleCalculator
                         i++;
 
                         if (i == input.Length) break;
-                    }   
+                    }
 
-                    if (isNegative)
+                    if (prevToken == '-')
                     {
                         currentNumber = $"-{currentNumber}";
-                        isNegative = false;
+                        operationStack.Pop();
                     }
-                    
+
                     result.Add(currentNumber);
+
                     i--;
                     prevToken = input[i];
                 }
 
                 if (!input[i].IsOperator()) continue;
 
-                if (!char.IsDigit(prevToken) && !(input[i] == '(' || input[i] == ')') && !isNegative)
-                {
-
-                    if (prevToken == '-' && input[i] == '(')
-                    {
-                        operationStack.Push(input[i]);
-                        prevToken = input[i];
-                        continue;
-                    }
-
-
-                    if ((prevToken == '*' || prevToken == '/') && input[i] == '-')
-                    {
-                        isNegative = true;
-                        continue;
-                    }
-
-                    //if (prevToken == '(' && input[i] == '-')
-                    //{
-                    //    isNegative = true;
-                    //    continue;
-                    //}
-
-
-                    switch (input[i])
-                    {
-                        case '-':
-                            if (input[i] != '(' && prevToken !='(')
-                            {
-                                isNegative = true;
-                            }
-                            
-                            continue;
-
-                        case '+':
-                            continue;
-                    }
-                }
-                
                 switch (input[i])
                 {
                     case '(':
-                        operationStack.Push(input[i]);
+                        {
+                            if (prevToken == '-')
+                            {
+                                result.Add("0");
+                            }
+
+                            operationStack.Push(input[i]);
+                        }
 
                         break;
                     case ')':
-                    {
-                        var symbol = operationStack.Pop();
-
-                        if (prevToken == '(')
-                            throw new SystemException();
-
-                        while (symbol != '(' )
                         {
-                            result.Add(symbol.ToString());
-                            symbol = operationStack.Pop();
-                        }
-                        break;
-                    }
-                    default:
-                    {
-                        if (operationStack.Count > 0)
-                        {
-                            if (input[i].GetOperationPriority() <= operationStack.Peek().GetOperationPriority())
+                            var symbol = operationStack.Pop();
+
+                            if (prevToken == '(')
+                                throw new SystemException();
+
+                            while (symbol != '(')
                             {
-                                result.Add(operationStack.Pop().ToString());
+                                result.Add(symbol.ToString());
+                                symbol = operationStack.Pop();
                             }
+
+                            break;
                         }
-                        
-                        operationStack.Push(input[i]);
-                        
-                        break;
-                    }
+                    default:
+                        {
+                            if (operationStack.Count > 0)
+                            {
+                                if (input[i].GetOperationPriority() <= operationStack.Peek().GetOperationPriority())
+                                {
+                                    result.Add(operationStack.Pop().ToString());
+                                }
+                            }
+
+                            operationStack.Push(input[i]);
+
+                            break;
+                        }
                 }
-                
+
                 prevToken = input[i];
             }
 
             while (operationStack.Count > 0)
             {
-                result.Add(operationStack.Pop().ToString());   
+                result.Add(operationStack.Pop().ToString());
             }
+
 
             return result;
         }
