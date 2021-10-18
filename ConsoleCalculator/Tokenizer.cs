@@ -74,6 +74,11 @@ namespace ConsoleCalculator
                         }
                     default:
                         {
+                            if(prevToken.IsOperatorWithoutBrackets() && input[i].IsOperatorWithoutBrackets() && (prevToken != '+' || input[i] != '-'))
+                            {
+                                throw new UnexpectedOperatorException($"Unexpected operator \'{input[i]}\'. Previous operator was \'{prevToken}\'");
+                            }
+
                             if (operationStack.Count > 0)
                             {
                                 if (input[i].GetOperationPriority() <= operationStack.Peek().GetOperationPriority())

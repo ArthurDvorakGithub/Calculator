@@ -24,7 +24,7 @@ namespace ConsoleCalculator
                     {
                         temp.Push(tempNumber);
                     }
-                    else if (t.First().IsOperator())
+                    else if (t.IsOperator())
                     {
                         var a = temp.Pop();
                         var b = temp.Pop();
